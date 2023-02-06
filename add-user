@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker run -v $OVPN_DATA:/etc/openvpn --rm -it \
-  kylemanna/openvpn easyrsa build-client-full $1 nopass && \
-docker run -v $OVPN_DATA:/etc/openvpn --rm \ 
-kylemanna/openvpn ovpn_getclient $1> $HOME/users/$1.ovpn
+mkdir -p $HOME/users
+
+docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full $1 nopass && \
+docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient $1> $HOME/users/$1.ovpn

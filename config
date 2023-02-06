@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker run -v $OVPN_DATA:/etc/openvpn --rm -it \
+  kylemanna/openvpn vi /etc/openvpn/openvpn.conf

@@ -1,8 +1,15 @@
 #!/bin/bash
 
+test -f $OVPV_DATA/openvpn.conf || docker run -v $OVPN_DATA:/etc/openvpn \
+  --rm kylemanna/openvpn ovpn_genconfig \
+  -u udp://$(curl https://whatsmyip.co | xargs)
+
+test -d $OVPN_DATA/pki || docker run -v $OVPN_DATA:/etc/openvpn \
+  --rm -it kylemanna/openvpn ovpn_initpki nopass
+
 docker run -v $OVPN_DATA:/etc/openvpn -d \
   -p 1194:1194/udp \
-  --log-driver syslog \
+  --log-driver json-file \
   --log-opt max-size=10m \
   --log-opt max-file=100 \
   --cap-add=NET_ADMIN kylemanna/openvpn

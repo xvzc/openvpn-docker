@@ -1,10 +1,16 @@
 # openvpn-docker
 
-# Install
-`bash ./install.sh`
+# Installation
+```bash
+curl -L https://github.com/xvzc/openvpn-docker/archive/refs/tags/0.1.tar.gz > \
+  openvpn.tar.gz && tar -xvzf ./openvpn.tar.gz \
+  --strip-components 1; \
+  rm ./openvpn.tar.gz; \
+  ./install.sh
+```
 
-# Init
-`bash ./init.sh`
+# Run
+`./run`
 
 # Create user
 `./add-user name`

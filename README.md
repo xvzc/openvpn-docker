@@ -2,7 +2,7 @@
 
 # Installation
 ```bash
-curl -L https://github.com/xvzc/openvpn-docker/archive/refs/tags/0.6.tar.gz > \
+curl -L https://github.com/xvzc/openvpn-docker/archive/refs/tags/0.7.tar.gz > \
   openvpn.tar.gz && tar -xvzf ./openvpn.tar.gz \
   --strip-components 1 && rm ./openvpn.tar.gz; \
   bash ./install.sh

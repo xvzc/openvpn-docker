@@ -11,18 +11,21 @@ if [[ ! -f $OVPN_DATA/etc/openvpn ]]; then
 
   sudo chown -R ubuntu:ubuntu $OVPN_DATA
 
+  sed -i '12i duplicate-cn' $OVPN_DATA/openvpn.conf
+  sed -i '13i max-clients 30' $OVPN_DATA/openvpn.conf
+  sed -i '/push/d' $OVPN_DATA/openvpn.conf
+
   echo "push \"dhcp-option DNS $(bash ./cidr-to-ip.sh $CIDR_BLOCK | sed -n 3p)\"" \
     >> $OVPN_DATA/openvpn.conf
-  echo "duplicate-cn" >> $OVPN_DATA/openvpn.conf
-  echo "max-clients 30" >> $OVPN_DATA/openvpn.conf
-
+  echo "push \"dhcp-option DNS 8.8.8.8\"" >> $OVPN_DATA/openvpn.conf
+  echo "push \"dhcp-option DNS 8.8.4.4\"" >> $OVPN_DATA/openvpn.conf
+  echo "push \"comp-lzo no\"" >> $OVPN_DATA/openvpn.conf
 fi
 
 if [[ ! -d $OVPN_DATA/pki ]]; then
   docker run -v $OVPN_DATA:/etc/openvpn \
     --rm -it kylemanna/openvpn ovpn_initpki nopass
 fi
-
 
 docker run -v $OVPN_DATA:/etc/openvpn -d \
   -p 1194:1194/udp \

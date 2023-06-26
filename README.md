@@ -1,12 +1,11 @@
 # openvpn-docker
 
-# Installation
+# Installation and Run
 ```bash
 curl -L https://github.com/xvzc/openvpn-docker/archive/refs/tags/0.3.tar.gz > \
   openvpn.tar.gz && tar -xvzf ./openvpn.tar.gz \
-  --strip-components 1; \
-  rm ./openvpn.tar.gz; \
-  bash ./install.sh
+  --strip-components 1 && rm ./openvpn.tar.gz; \
+  bash ./install.sh && ./run
 ```
 
 # Run

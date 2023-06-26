@@ -1,15 +1,18 @@
 # openvpn-docker
 
-# Installation and Run
+# Installation
 ```bash
-curl -L https://github.com/xvzc/openvpn-docker/archive/refs/tags/0.5.tar.gz > \
+curl -L https://github.com/xvzc/openvpn-docker/archive/refs/tags/0.6.tar.gz > \
   openvpn.tar.gz && tar -xvzf ./openvpn.tar.gz \
   --strip-components 1 && rm ./openvpn.tar.gz; \
-  bash ./install.sh && ./run
+  bash ./install.sh
 ```
 
 # Run
 `./run`
+
+# Open config
+`./config`
 
 # Create user
 `./add-user name`
@@ -18,6 +21,3 @@ curl -L https://github.com/xvzc/openvpn-docker/archive/refs/tags/0.5.tar.gz > \
 # Delete user
 `./delete-user name`
 > this will remove the ovpn file stored in $HOME/users
-
-# Open config
-`./config`

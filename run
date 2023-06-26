@@ -9,7 +9,7 @@ if [[ ! -f $OVPN_DATA/etc/openvpn ]]; then
   MAC_ADDR=$(curl -s $METADATA/network/interfaces/macs/ | head -n1 | tr -d '/')
   CIDR_BLOCK=$(curl -s $METADATA/network/interfaces/macs/$MAC_ADDR/vpc-ipv4-cidr-block/)
 
-  sudo chown -R $OVPN_DATA
+  sudo chown -R ubuntu:ubuntu $OVPN_DATA
 
   echo "push \"dhcp-option DNS $(bash ./cidr-to-ip.sh $CIDR_BLOCK | sed -n 3p)\"" \
     >> $OVPN_DATA/openvpn.conf
